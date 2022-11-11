@@ -4,18 +4,36 @@ var config = require("../config")
 const router = express.Router();
 var notification = require("../models/notification");
 const auth = require("../middlewares/passport");
-const sequelize = new Sequelize('gestion', 'root', '', {
-	host:'localhost',
-	port: 3306,
-	dialect:'mysql',
-	pool:{
-		max: 5,
-		min: 0,
-		acquire: 30000,
-		idle: 10000
-	}, 
-	operatorsAliases: false
-});
+var configuration = require("../config");
+const sequelize = new Sequelize(
+  configuration.connection.base,
+  configuration.connection.root,
+  configuration.connection.password,
+  {
+    host: configuration.connection.host,
+    port: configuration.connection.port,
+    dialect: "mysql",
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000,
+    },
+    operatorsAliases: false,
+  }
+);
+/* const sequelize = new Sequelize("gestion", "root", "", {
+  host: "localhost",
+  port: 3306,
+  dialect: "mysql",
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000,
+  },
+  operatorsAliases: false,
+}); */
 
 router.get("/getNotification/:id/:role/:service",auth, (req, res) => {
   var condition=[];

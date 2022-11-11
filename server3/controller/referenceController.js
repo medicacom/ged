@@ -9,7 +9,25 @@ var user = require("../models/user");
 var notification = require("../models/notification");
 const auth = require("../middlewares/passport");
 const sendMail = require("./sendMailController");
-const sequelize = new Sequelize("gestion", "root", "", {
+var configuration = require("../config");
+const sequelize = new Sequelize(
+  configuration.connection.base,
+  configuration.connection.root,
+  configuration.connection.password,
+  {
+    host: configuration.connection.host,
+    port: configuration.connection.port,
+    dialect: "mysql",
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000,
+    },
+    operatorsAliases: false,
+  }
+);
+/* const sequelize = new Sequelize("gestion", "root", "", {
   host: "localhost",
   port: 3306,
   dialect: "mysql",
@@ -20,7 +38,7 @@ const sequelize = new Sequelize("gestion", "root", "", {
     idle: 10000,
   },
   operatorsAliases: false,
-});
+}); */
 const multer = require("multer");
 var fs = require("fs");
 const storage = multer.diskStorage({
