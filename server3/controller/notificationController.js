@@ -22,18 +22,6 @@ const sequelize = new Sequelize(
     operatorsAliases: false,
   }
 );
-/* const sequelize = new Sequelize("gestion", "root", "", {
-  host: "localhost",
-  port: 3306,
-  dialect: "mysql",
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000,
-  },
-  operatorsAliases: false,
-}); */
 
 router.get("/getNotification/:id/:role/:service",auth, (req, res) => {
   var condition=[];

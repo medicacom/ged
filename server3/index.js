@@ -5,12 +5,10 @@ var app = express();
 const path = require("path");
 /* var cors = require("cors");
 app.use(cors()); */
-/* app.use(express.static(path.join(__dirname, "../client/build"))); */
+
+app.use(express.static(path.join(__dirname, "../client/build")));
+
 // Used for sending the Json Data to Node API 
-app.use(express.json());
-var corsOptions = {
-  origin: "http://localhost:4000/login",
-};
 /* sequelize.sync({alter:true}) cette commande pour alter table dans n import model*/
 app.use("/formation/", require("./controller/formationController")); 
 app.use("/role/", require("./controller/roleController"));
@@ -32,9 +30,9 @@ app.use("/video/", require("./controller/videoController"));
 app.use("/pdfFeuille/", require("./controller/pdfFeuilleController")); 
 app.use("/root/", require("./controller/rootController")); 
 
-/* app.get("*", (req, res) => {
+app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/build", "index.html"));
-});  */
+}); 
 
 const PORT = 4003 || 5000 || 6000;
 app.listen(PORT, (err) =>
