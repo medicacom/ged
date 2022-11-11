@@ -3,8 +3,8 @@
 const express = require("express");
 var app = express();
 const path = require("path");
-var cors = require("cors");
-app.use(cors());
+/* var cors = require("cors");
+app.use(cors()); */
 /* app.use(express.static(path.join(__dirname, "../client/build"))); */
 // Used for sending the Json Data to Node API 
 app.use(express.json());
@@ -36,7 +36,7 @@ app.use("/root/", require("./controller/rootController"));
   res.sendFile(path.join(__dirname, "../client/build", "index.html"));
 });  */
 
-const PORT = 4000 || 5000 || 6000;
+const PORT = 4003 || 5000 || 6000;
 app.listen(PORT, (err) =>
   err ? console.log(err) : console.log(`app listening on port ${PORT}!`)
 );
