@@ -43,7 +43,7 @@
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
-    "build": "react-scripts --openssl-legacy-provider build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "compile:scss": "sass src/assets/scss/style.scss src/assets/css/style.css",
     "minify:scss": "sass src/assets/scss/style.scss src/assets/css/style.min.css --output-style compressed",
